@@ -16,10 +16,11 @@
 var numeriPc = [];
 var numeroPc;
 
-//ciclo di for per creare 16 numeri random con condizione che non possono essere uguali tra di loro
-for (var i = 0; i < 16; i++){
+//ciclo di while per creare 16 numeri random con condizione che non possono essere uguali tra di loro
+
+while (numeriPc.length < 16){
     numeroPc = numeroRandom(1, 100);
-    if (numeriPc[i] != numeroPc){
+    if (numeriPc.includes(numeroPc) == false){
         numeriPc.push(numeroPc);
     }
 }
@@ -27,26 +28,26 @@ for (var i = 0; i < 16; i++){
 console.log(numeriPc);
 
 
-
+// ciclo di while per chiedere all'utente i numeri col controllo che non siano uguali
 var numeriUtente = [];
 var numeroUtente;
-var trovata = false;
 
-for (var i = 0; i < 5; i++) {
-    numeroUtente = parseInt(prompt('Inserisci un numero compreso tra 1 e 100'));
-    if(numeroUtente != numeriUtente[i]){
-        trovata = true;
+while (numeriUtente.length < 5){
+    numeroUtente = parseInt(prompt('Inserisci un numero'));
+    if (numeriUtente.includes(numeroUtente) == false){
+        numeriUtente.push(numeroUtente);
     }
 }
 
-if (trovata == true) {
-    numeriUtente.push(numeroUtente);
-
-}else {
-    alert('Hai inserito numeri uguali');
-}
+var check = checkBomb(numeriPc, numeroUtente);
+console.log(check);
 
 console.log(numeriUtente);
+//controllo se è nei 16 funzione
+
+
+
+
 
 
 
@@ -64,4 +65,17 @@ console.log(numeriUtente);
 //per generare numero random minimo e massimo inclusi
 function numeroRandom(min, max){
     return Math.floor(Math.random()*(max - min + 1)) + min;
+}
+
+//funzione per controllare se il numero utente è nei 16 del pc
+function checkBomb(array, elemento){
+    var messaggio = false;
+    var i = 0;
+    while (i < array.length && messaggio == false) {
+        if(elemento == array[i]){
+        messaggio == true;
+        }
+        i++;
+    }
+    return messaggio;
 }
