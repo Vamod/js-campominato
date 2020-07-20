@@ -32,14 +32,18 @@ console.log(numeriPc);
 var numeriUtente = [];
 var numeroUtente;
 
+
+
 while (numeriUtente.length < 5){
     numeroUtente = parseInt(prompt('Inserisci un numero'));
-    if (numeriUtente.includes(numeroUtente) == false){
+    if ((numeriUtente.includes(numeroUtente) == false) && (checkBomb(numeriPc, numeroUtente) == false)){
         numeriUtente.push(numeroUtente);
+    } else {
+        alert('hai perso!!!');
     }
 }
 
-var check = checkBomb(numeriPc, numeroUtente);
+
 console.log(check);
 
 console.log(numeriUtente);
