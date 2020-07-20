@@ -32,36 +32,21 @@ console.log(numeriPc);
 var numeriUtente = [];
 var numeroUtente;
 
-
+var check = checkBomb(numeriPc, numeroUtente);
 
 while (numeriUtente.length < 5){
     numeroUtente = parseInt(prompt('Inserisci un numero'));
-    if ((numeriUtente.includes(numeroUtente) == false) && (checkBomb(numeriPc, numeroUtente) == false)){
+     if(check == false){
+        console.log(check);
         numeriUtente.push(numeroUtente);
+        console.log(numeriUtente);
     } else {
-        alert('hai perso!!!');
+        alert('hai perso');
     }
 }
 
-
-console.log(check);
-
 console.log(numeriUtente);
 //controllo se è nei 16 funzione
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // funzioni
