@@ -17,13 +17,41 @@ var numeriPc = [];
 var numeroPc;
 
 //ciclo di for per creare 16 numeri random con condizione che non possono essere uguali tra di loro
-for( var i = 0; i < 16; i++){
+for (var i = 0; i < 16; i++){
     numeroPc = numeroRandom(1, 100);
     if (numeriPc[i] != numeroPc){
-    numeriPc.push(numeroPc);
+        numeriPc.push(numeroPc);
+    }
 }
-}
+
 console.log(numeriPc);
+
+
+
+var numeriUtente = [];
+var numeroUtente;
+var trovata = false;
+
+for (var i = 0; i < 5; i++) {
+    numeroUtente = parseInt(prompt('Inserisci un numero compreso tra 1 e 100'));
+    if(numeroUtente != numeriUtente[i]){
+        trovata = true;
+    }
+}
+
+if (trovata == true) {
+    numeriUtente.push(numeroUtente);
+
+}else {
+    alert('Hai inserito numeri uguali');
+}
+
+console.log(numeriUtente);
+
+
+
+
+
 
 
 
