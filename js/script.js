@@ -15,11 +15,33 @@
 // creo variabile con array vuoto per salvare i numeri random generati dal pc edichiaro var numeroPc
 var numeriPc = [];
 var numeroPc;
+var massimo = 100;
+
+//BONUS
+// controllo su variabile scelta
+do {
+  var scelta = parseInt(prompt('Decidi il livello 0, 1 o 2'));
+} while (scelta > 2 || scelta < 0);
+
+// opzioni livello
+switch (scelta) {
+    case 0:
+        var massimo = 100;
+        break;
+    case 1:
+        var massimo = 80;
+        break;
+    case 2:
+        var massimo = 50;
+        break;
+    default:
+    var massimo = 100;
+}
 
 //ciclo di while per creare 16 numeri random con condizione che non possono essere uguali tra di loro
 
 while (numeriPc.length < 16){
-    numeroPc = numeroRandom(1, 100);
+    numeroPc = numeroRandom(1, massimo);
     if (numeriPc.includes(numeroPc) == false){
         numeriPc.push(numeroPc);
     }
@@ -27,26 +49,32 @@ while (numeriPc.length < 16){
 
 console.log(numeriPc);
 
-
-// ciclo di while per chiedere all'utente i numeri
+//parte utente
 var numeriUtente = [];
 var numeroUtente;
+var trovato = false;
+var possibilita = massimo - numeriPc.length;
 
-
-
-
-while (numeriUtente.length < 5){
-    numeroUtente = parseInt(prompt('Inserisci un numero'));
-    var check = checkBomb(numeriPc, numeroUtente);
-    console.log(check);
-    if(check == true){
-        alert('Hai perso!!! Fine partita');
-    }
-    if (check == true && numeriUtente.includes(numeroUtente)){
-        alert('Hai inserito due numeri uguali')
-    } else {
+// ciclo di while per chiedere all'utente i numeri e controllare
+while (numeriUtente.length < possibilita && trovato == false){
+    numeroUtente = parseInt(prompt('Inserisci un numero compreso tra 1 e ' + massimo));
+    //controllo che il numero sia compreso tra 1 e 100 inclusi
+    while(numeroUtente <= 0 || numeroUtente > massimo){
+         number = parseInt(prompt('Hai inserito un numero fuori dal range! Inserisci un numero da 1 a ' + massimo));
+}
+//controllo tramite la funzione checkBomb se il numero scelto è presente nel array dei numeri generati dal pc
+    if (checkBomb(numeriPc, numeroUtente)){
+        trovato = true;
+        alert('Hai perso!!! Fine partita PUNTEGGIO: ' + numeriUtente.length);
+    } else if(!(checkBomb(numeriUtente, numeroUtente))){
         numeriUtente.push(numeroUtente);
+    }else {
+        alert('Hai inserito due numeri uguali');
     }
+}
+
+if(numeriUtente.length == possibilita){
+    alert('Hai vinto!!!');
 }
 
 console.log(numeriUtente);
