@@ -12,7 +12,7 @@
 // con difficoltà 2 => tra 1 e 50
 
 
-// creo variabile con array vuoto per salvare i numeri random generati dal pc
+// creo variabile con array vuoto per salvare i numeri random generati dal pc edichiaro var numeroPc
 var numeriPc = [];
 var numeroPc;
 
@@ -28,26 +28,28 @@ while (numeriPc.length < 16){
 console.log(numeriPc);
 
 
-// ciclo di while per chiedere all'utente i numeri col controllo che non siano uguali
+// ciclo di while per chiedere all'utente i numeri
 var numeriUtente = [];
 var numeroUtente;
 
-var check = checkBomb(numeriPc, numeroUtente);
+
+
 
 while (numeriUtente.length < 5){
     numeroUtente = parseInt(prompt('Inserisci un numero'));
-     if(check == false){
-        console.log(check);
-        numeriUtente.push(numeroUtente);
-        console.log(numeriUtente);
+    var check = checkBomb(numeriPc, numeroUtente);
+    console.log(check);
+    if(check == true){
+        alert('Hai perso!!! Fine partita');
+    }
+    if (check == true && numeriUtente.includes(numeroUtente)){
+        alert('Hai inserito due numeri uguali')
     } else {
-        alert('hai perso');
+        numeriUtente.push(numeroUtente);
     }
 }
 
 console.log(numeriUtente);
-//controllo se è nei 16 funzione
-
 
 // funzioni
 
@@ -56,15 +58,15 @@ function numeroRandom(min, max){
     return Math.floor(Math.random()*(max - min + 1)) + min;
 }
 
-//funzione per controllare se il numero utente è nei 16 del pc
-function checkBomb(array, elemento){
-    var messaggio = false;
-    var i = 0;
-    while (i < array.length && messaggio == false) {
-        if(elemento == array[i]){
-        messaggio == true;
-        }
-        i++;
-    }
-    return messaggio;
+
+// per vedere se il numero utente è tra i numeri del Pc
+function checkBomb(lista,elemento) {
+   var i=0;
+   while (i < lista.length ) {
+       if( elemento == lista[i]){
+           return  true;
+       }
+       i++;
+   }
+   return false;
 }
